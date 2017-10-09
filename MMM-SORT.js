@@ -4,7 +4,10 @@
  * By Mykle1
  *
  */
-Module.register("MMM-SORT", {
+ //  Dude PLEASE stop noting EVERYTHING.... it makes your code look horrible....and makes you look like you have NO idea what you're doing.
+ // if someone doesn't know what they're doing in the code they shouldn't be in here.......
+ 
+ Module.register("MMM-SORT", {
 
     // Module config defaults.
     defaults: {
@@ -19,18 +22,22 @@ Module.register("MMM-SORT", {
         animationSpeed: 3000, // fade speed
         initialLoadDelay: 3250,
         retryDelay: 2500,
-        rotateInterval: 5 * 60 * 1000, // 5 minutes
+        rotateInterval: 5  * 60 * 1000, // 5 minutes
         updateInterval: 60 * 60 * 1000, // Equals 720 of 1000 free calls a month
     },
 
     getStyles: function() {
         return ["MMM-SORT.css"];
     },
+    
+    getScripts: function(){
+		return ['moment.js'];  // if I didn't define this it won't run on 2.10  I know you have the require 2.1.1 but you don't need that 
+	},
 
     start: function() {
         Log.info("Starting module: " + this.name);
 
-        requiresVersion: "2.1.1",
+        //requiresVersion: "2.1.1",
 
         //  Set locale.
         this.url = "https://www.worldtides.info/api?extremes&lat=" + this.config.lat + "&lon=" + this.config.lon + "&length=604800&key=" + this.config.apiKey;
@@ -67,7 +74,7 @@ Module.register("MMM-SORT", {
 
 ///////////// First IF the rotating data ////////////
 		
-		if(this.config.mode == "rotating"){
+		if(this.config.mode != "static"){  //changed that as well to != it's easier to use then = or == or ===
 
             // Rotating my data
             var tides = this.tides;
@@ -133,10 +140,12 @@ Module.register("MMM-SORT", {
 		
 		} else {
 			
+		 var tides = this.tides;  //you needed to define this for this section....
+		 
 		 var top = document.createElement("div");
         top.classList.add("list-row");
 
-		
+	 
         // place
         var place = document.createElement("div");
         place.classList.add("small", "bright", "place");
@@ -232,7 +241,7 @@ Module.register("MMM-SORT", {
 		top.appendChild(date2);
 		
         wrapper.appendChild(top);
-			
+				
 		}
 		
         return wrapper;
@@ -245,6 +254,7 @@ Module.register("MMM-SORT", {
         this.respLon = data.responseLon; // before extremes object
         this.station = data.station; // before extremes object
         this.tides = data.extremes; // Object
+console.log(this.tides);
         this.loaded = true;
         //	console.log(this.tides); // for checking
     },
@@ -271,7 +281,8 @@ Module.register("MMM-SORT", {
     socketNotificationReceived: function(notification, payload) {
         if (notification === "TIDES_RESULT") {
             this.processTides(payload);
-            if (this.rotateInterval == null) {
+            if (this.config.mode != 'static' && this.rotateInterval == null) {   // if you want static it will return false and will not try to run
+            //these statements BOTH have to be true to run... if one is false the other true it will not run ;)  
                 this.scheduleCarousel();
             }
             this.updateDom(this.config.animationSpeed);
