@@ -1,0 +1,44 @@
+/* Copy and paste any or all of these css entries into your custom.css file inside your
+ * css folder. The functions are annotated to make things as easy as possible for you.
+ * Use any colors you want! For example - "http://htmlcolorcodes.com/color-picker/"
+ * Pick your color, copy and paste the HEX number. Example - #62FF00 = bright green.
+ */
+
+
+.MMM-SORT .header {
+  color: white;               /* Color the header text. Default is white. */
+  text-align: left;           /* Align the header text. (left, center, right) */
+}
+
+.MMM-SORT .dt {
+  color: white;               /* Color the date and time text. Default is white. */
+  text-align: left;           /* Align the date and time text. (left, center, right) */
+}
+
+.MMM-SORT .type {
+  color: white                /* Color the High/Low tide. Default is white. */
+  text-align: left;           /* Align the High/Low tide. (left, center, right) */
+/*  display: none; */         /* Uncomment if you don't want the type */
+}
+
+.MMM-SORT .img {
+  margin-bottom: -4px;        /* Centers icon between lines. */
+}
+
+.MMM-SORT .height {
+  color: white;               /* Color the tidal variance text. Default is white. */
+  text-align: left;           /* Align the tidal variance. (left, center, right) */
+/*  display: none; */         /* Uncomment if you don't want the height */
+}
+
+.MMM-SORT .station {
+  color: white;               /* Color the location name. Default is white. */
+  text-align: left;           /* Align the location name. (left, center, right) */
+/*  display: none; */         /* Uncomment if you don't want the station */
+}
+
+.MMM-SORT .latLon {
+  color: white;               /* Color the latLon of tide station. Default is white. */
+  text-align: left;           /* Align the latLon of tide station. (left, center, right) */
+/*  display: none; */         /* Uncomment if you don't want the latLon */
+}
