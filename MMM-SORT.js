@@ -3,9 +3,7 @@
  *
  * By Mykle1
  *
- */
- //  Dude PLEASE stop noting EVERYTHING.... it makes your code look horrible....and makes you look like you have NO idea what you're doing.
- // if someone doesn't know what they're doing in the code they shouldn't be in here.......
+
  
  Module.register("MMM-SORT", {
 
