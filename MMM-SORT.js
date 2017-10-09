@@ -65,7 +65,7 @@ Module.register("MMM-SORT", {
 		
 /////////////////// suggested by @yawns. :-) ///////////
 
-///////////// First the rotating data ////////////
+///////////// First IF the rotating data ////////////
 		
 		if(this.config.mode == "rotating"){
 
@@ -129,7 +129,7 @@ Module.register("MMM-SORT", {
 
         }
 		
-////////////////// Now the static data //////////////
+////////////////// ELSE the static data //////////////
 		
 		} else {
 			
@@ -147,7 +147,7 @@ Module.register("MMM-SORT", {
         // Tide #1 = High/Low icon, day of the week, time of tide (am/pm)
         var date = document.createElement("div");
         date.classList.add("xsmall", "bright", "date");
-		if (tides.type == "Low") {
+		if (tides[0].type == "Low") {
             date.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[0].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[0].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         } else {
             date.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[0].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[0].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
