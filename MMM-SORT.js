@@ -1,26 +1,26 @@
 /* Magic Mirror
- * Module: MMM-SORT
+ * Module: MMM-SORT = Static Or Rotating Tides
  *
  * By Mykle1
  *
-
+ */
  
- Module.register("MMM-SORT", {
+Module.register("MMM-SORT", {
 
     // Module config defaults.
     defaults: {
-        apiKey: "", // Free apiKey @ https://www.worldtides.info/register
-        lat: "", // your latitude
-        lon: "", // your longitude
-		mode: "static", // static or rotating
-        height: "ft", // ft = feet, m = meters for tide height
-        useHeader: false, // False if you don't want a header      
-        header: "", // Change in config file. useHeader must be true
+        apiKey: "",                     // Free apiKey @ https://www.worldtides.info/register
+        lat: "",                        // your latitude
+        lon: "",                        // your longitude
+		mode: "static",                 // static or rotating
+        height: "ft",                   // ft = feet, m = meters for tide height
+        useHeader: false,               // False if you don't want a header      
+        header: "",                     // Change in config file. useHeader must be true
         maxWidth: "300px",
-        animationSpeed: 3000, // fade speed
+        animationSpeed: 3000,           // fade speed
         initialLoadDelay: 3250,
         retryDelay: 2500,
-        rotateInterval: 5  * 60 * 1000, // 5 minutes
+        rotateInterval: 30 * 1000,      // seconds
         updateInterval: 60 * 60 * 1000, // Equals 720 of 1000 free calls a month
     },
 
@@ -29,13 +29,12 @@
     },
     
     getScripts: function(){
-		return ['moment.js'];  // if I didn't define this it won't run on 2.10  I know you have the require 2.1.1 but you don't need that 
+		return ['moment.js']; // needed for MM versions without moment
 	},
 
     start: function() {
         Log.info("Starting module: " + this.name);
 
-        //requiresVersion: "2.1.1",
 
         //  Set locale.
         this.url = "https://www.worldtides.info/api?extremes&lat=" + this.config.lat + "&lon=" + this.config.lon + "&length=604800&key=" + this.config.apiKey;
@@ -68,14 +67,18 @@
             wrapper.appendChild(header);
         }
 		
-/////////////////// suggested by @yawns. :-) ///////////
+///////////////////  Suggested by @yawns. ////////////////////
 
-///////////// First IF the rotating data ////////////
+//////////////////  Almost got there  ////////////////////////
+
+//////////////////  Corrected by Cowboysdude (GURU) //////////
+
+///////////// First - IF the rotating data ///////////////////
 		
-		if(this.config.mode != "static"){  //changed that as well to != it's easier to use then = or == or ===
+		if(this.config.mode != "static"){
 
             // Rotating my data
-            var tides = this.tides;
+            var tides = this.tides; // must also be defined in the else portion of statement
 
             var keys = Object.keys(this.tides);
         if (keys.length > 0) {
@@ -134,13 +137,13 @@
 
         }
 		
-////////////////// ELSE the static data //////////////
+        ////////////////// ELSE - the static data //////////////
 		
 		} else {
 			
-		 var tides = this.tides;  //you needed to define this for this section....
+		var tides = this.tides;  // need to define tides again for this section....
 		 
-		 var top = document.createElement("div");
+		var top = document.createElement("div");
         top.classList.add("list-row");
 
 	 
@@ -155,9 +158,9 @@
         var date = document.createElement("div");
         date.classList.add("xsmall", "bright", "date");
 		if (tides[0].type == "Low") {
-            date.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[0].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[0].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date.innerHTML = "<img class = img src=modules/MMM-SORT/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[0].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[0].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         } else {
-            date.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[0].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[0].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date.innerHTML = "<img class = img src=modules/MMM-SORT/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[0].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[0].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         }
 		top.appendChild(date);
 		
@@ -166,9 +169,9 @@
         var date2 = document.createElement("div");
         date2.classList.add("xsmall", "bright", "date2");
 		if (tides[1].type == "Low") {
-            date2.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[1].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[1].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date2.innerHTML = "<img class = img src=modules/MMM-SORT/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[1].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[1].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         } else {
-            date2.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[1].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[1].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date2.innerHTML = "<img class = img src=modules/MMM-SORT/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[1].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[1].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         }
 		top.appendChild(date2);
 		
@@ -177,9 +180,9 @@
         var date = document.createElement("div");
         date.classList.add("xsmall", "bright", "date");
 		if (tides[2].type == "Low") {
-            date.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[2].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[2].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date.innerHTML = "<img class = img src=modules/MMM-SORT/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[2].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[2].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         } else {
-            date.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[2].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[2].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date.innerHTML = "<img class = img src=modules/MMM-SORT/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[2].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[2].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         }
 		top.appendChild(date);
 		
@@ -188,9 +191,9 @@
         var date2 = document.createElement("div");
         date2.classList.add("xsmall", "bright", "date2");
 		if (tides[3].type == "Low") {
-            date2.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[3].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[3].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date2.innerHTML = "<img class = img src=modules/MMM-SORT/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[3].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[3].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         } else {
-            date2.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[3].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[3].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date2.innerHTML = "<img class = img src=modules/MMM-SORT/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[3].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[3].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         }
 		top.appendChild(date2);
 		
@@ -199,9 +202,9 @@
         var date = document.createElement("div");
         date.classList.add("xsmall", "bright", "date");
 		if (tides[4].type == "Low") {
-            date.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[4].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[4].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date.innerHTML = "<img class = img src=modules/MMM-SORT/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[4].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[4].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         } else {
-            date.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[4].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[4].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date.innerHTML = "<img class = img src=modules/MMM-SORT/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[4].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[4].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         }
 		top.appendChild(date);
 		
@@ -210,9 +213,9 @@
         var date2 = document.createElement("div");
         date2.classList.add("xsmall", "bright", "date2");
 		if (tides[5].type == "Low") {
-            date2.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[5].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[5].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date2.innerHTML = "<img class = img src=modules/MMM-SORT/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[5].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[5].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         } else {
-            date2.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[5].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[5].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date2.innerHTML = "<img class = img src=modules/MMM-SORT/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[5].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[5].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         }
 		top.appendChild(date2);
 		
@@ -221,9 +224,9 @@
         var date = document.createElement("div");
         date.classList.add("xsmall", "bright", "date");
 		if (tides[6].type == "Low") {
-            date.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[6].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[6].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date.innerHTML = "<img class = img src=modules/MMM-SORT/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[6].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[6].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         } else {
-            date.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[6].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[6].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date.innerHTML = "<img class = img src=modules/MMM-SORT/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[6].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[6].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         }
 		top.appendChild(date);
 		
@@ -232,29 +235,28 @@
         var date2 = document.createElement("div");
         date2.classList.add("xsmall", "bright", "date2");
 		if (tides[7].type == "Low") {
-            date2.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[7].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[7].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date2.innerHTML = "<img class = img src=modules/MMM-SORT/images/low.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[7].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[7].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         } else {
-            date2.innerHTML = "<img class = img src=modules/MMM-SimpleTides/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[7].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[7].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
+            date2.innerHTML = "<img class = img src=modules/MMM-SORT/images/high.png width=12% height=12%>" + " &nbsp " + moment.utc(tides[7].dt * 1000).local().format("ddd") + " &nbsp" + moment.utc(tides[7].dt * 1000).local().format("  h:mm a"); // Stackoverflow.com
         }
 		top.appendChild(date2);
 		
         wrapper.appendChild(top);
 				
-		}
+		} // closes else
 		
         return wrapper;
     },
 
 
     processTides: function(data) {
-        this.today = data.Today;
         this.respLat = data.responseLat; // before extremes object
         this.respLon = data.responseLon; // before extremes object
         this.station = data.station; // before extremes object
         this.tides = data.extremes; // Object
-console.log(this.tides);
+    //	console.log(this.tides); // for checking
         this.loaded = true;
-        //	console.log(this.tides); // for checking
+        
     },
 
     scheduleCarousel: function() {
@@ -280,7 +282,7 @@ console.log(this.tides);
         if (notification === "TIDES_RESULT") {
             this.processTides(payload);
             if (this.config.mode != 'static' && this.rotateInterval == null) {   // if you want static it will return false and will not try to run
-            //these statements BOTH have to be true to run... if one is false the other true it will not run ;)  
+            //these statements BOTH have to be true to run... if one is false the other true it will not run. Huge props to Cowboysdude for this!!!
                 this.scheduleCarousel();
             }
             this.updateDom(this.config.animationSpeed);
