@@ -1,6 +1,6 @@
 ## MMM-SORT
 
-**S**tatic **O**r **R**otating **T**ides
+**Static Or Rotating Tides**
 
 ## S.O.P.
 
@@ -10,7 +10,7 @@ screen real estate. My hope is that they are all informative, or fun, or both.
 
 ## What you get
 
-**S**tatic**
+**Static**
 
 * A static display of the next 8 tides
 * High/Low tide icon indicator, day and time of tide
@@ -19,7 +19,7 @@ screen real estate. My hope is that they are all informative, or fun, or both.
 
 ## Or
 
-**R**otating
+**Rotating**
 
 * A rotation of tides for the next 7 days
 * Day, date and time for each tide
@@ -37,7 +37,7 @@ Annotated .css file included for position, sizing, and coloring. Default is whit
 
 ![](images/s1.JPG), ![](images/s2.JPG),
 
-* Rotating. One colored with header, one plain white with no header.
+* Rotating.
 
 ![](images/r1.JPG), ![](images/r2.JPG),
 
