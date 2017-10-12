@@ -1,6 +1,6 @@
 ## MMM-SORT
 
-**Static Or Rotating Tides**
+**S**tatic **O**r **R**otating **T**ides
 
 ## S.O.P.
 
@@ -10,16 +10,18 @@ screen real estate. My hope is that they are all informative, or fun, or both.
 
 ## What you get
 
-**Static**
+**S**tatic**
 
 * A static display of the next 8 tides
 * High/Low tide icon indicator, day and time of tide
+* Your own text to indicate high or low tides (config option)
+* Day, date and time dim when the most recent tide passes
 * Name of the location of the tide station (If desired)
 * Tide station used is the closest to your longitude and latitude
 
 ## Or
 
-**Rotating**
+**R**otating
 
 * A rotation of tides for the next 7 days
 * Day, date and time for each tide
@@ -35,9 +37,9 @@ Annotated .css file included for position, sizing, and coloring. Default is whit
 
 * Static. Color it any way you like. Don't want the location? It's gone!
 
-![](images/s1.JPG), ![](images/s2.JPG),
+![](images/s1.JPG), ![](images/s2.JPG), ![](images/s3.JPG),
 
-* Rotating.
+* Rotating. One colored with header, one plain white with no header.
 
 ![](images/r1.JPG), ![](images/r2.JPG),
 
@@ -64,12 +66,14 @@ Annotated .css file included for position, sizing, and coloring. Default is whit
 			lat: "40.537661",           // your latitude
 			lon: "-74.128333",          // your longitude
 			mode: "static",             // static or rotating
+			LowText: "Low",             // Low tide text. Whatever you want or nothing "",
+			HighText: "High",           // High tide text. Whatever you want or nothing "",
 			height: "ft",               // ft = feet, m = meters (When mode: is rotating)
-			useHeader: false,           // False if you don't want a header      
+			useHeader: false,           // false if you don't want a header      
 			header: "",                 // Change in config file. useHeader must be true
 			maxWidth: "300px",
 			animationSpeed: 3000,       // fade speed
-			rotateInterval: 15 * 1000,  // seconds (When mode: is rotating)
+			rotateInterval: 20 * 1000,  // seconds (When mode: is rotating)
 		}
 	},
 

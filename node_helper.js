@@ -1,8 +1,8 @@
 /* Magic Mirror
- * Module: MMM-SORT
+ * Module: MMM-SORT = Static Or Rotating Tides
  *
  * By Mykle1
- *
+ * MIT License
  */
 const NodeHelper = require('node_helper');
 const request = require('request');

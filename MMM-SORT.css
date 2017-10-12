@@ -31,9 +31,9 @@
 /*  display: none; */         /* Uncomment if you don't want the height */
 }
 
-.MMM-SORT .station {
+.MMM-SORT .place {
   color: white;               /* Color the location name. Default is white. */
-  text-align: left;           /* Align the location name. (left, center, right) */
+  text-align: center;         /* Align the location name. (left, center, right) */
 /*  display: none; */         /* Uncomment if you don't want the station */
 }
 
