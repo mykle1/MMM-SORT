@@ -264,6 +264,20 @@ Module.register("MMM-SORT", {
 		
         return wrapper;
     },
+    
+    
+    /////  Add this function to the modules you want to control with voice //////
+
+    notificationReceived: function(notification, payload) {
+        if (notification === 'HIDE_TIDES') {
+            this.hide(1000);
+            this.updateDom(300);
+        }  else if (notification === 'SHOW_TIDES') {
+            this.show(1000);
+            this.updateDom(300);
+        }
+            
+    },
 
 
     processTides: function(data) {
