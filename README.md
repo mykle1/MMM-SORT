@@ -63,8 +63,8 @@ Annotated .css file included for position, sizing, and coloring. Default is whit
 		position: "top_left",
 		config: {
 			apiKey: "YOUR API KEY",     // free from https://www.worldtides.info/developer
-			lat: "40.537661",           // your latitude
-			lon: "-74.128333",          // your longitude
+			lat: "40.111111",           // your latitude
+			lon: "-74.111111",          // your longitude
 			mode: "static",             // static or rotating
 			LowText: "Low",             // Low tide text. Whatever you want or nothing "",
 			HighText: "High",           // High tide text. Whatever you want or nothing "",
