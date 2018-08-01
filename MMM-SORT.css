@@ -13,11 +13,13 @@
 .MMM-SORT .dt {
   color: white;               /* Color the date and time text. Default is white. */
   text-align: left;           /* Align the date and time text. (left, center, right) */
+    padding: 4px;
 }
 
 .MMM-SORT .type {
   color: white                /* Color the High/Low tide. Default is white. */
   text-align: left;           /* Align the High/Low tide. (left, center, right) */
+    padding: 4px;
 /*  display: none; */         /* Uncomment if you don't want the type */
 }
 
@@ -28,17 +30,28 @@
 .MMM-SORT .height {
   color: white;               /* Color the tidal variance text. Default is white. */
   text-align: left;           /* Align the tidal variance. (left, center, right) */
+    padding: 4px;
 /*  display: none; */         /* Uncomment if you don't want the height */
 }
 
 .MMM-SORT .place {
   color: white;               /* Color the location name. Default is white. */
-  text-align: center;         /* Align the location name. (left, center, right) */
+  text-align: left;         /* Align the location name. (left, center, right) */
+    padding: 4px;
 /*  display: none; */         /* Uncomment if you don't want the station */
 }
 
 .MMM-SORT .latLon {
   color: white;               /* Color the latLon of tide station. Default is white. */
   text-align: left;           /* Align the latLon of tide station. (left, center, right) */
+    padding: 4px;
 /*  display: none; */         /* Uncomment if you don't want the latLon */
+}
+
+.MMM-SORT .date {
+  padding: 4px;
+}
+
+.MMM-SORT .date2 {
+  padding: 4px;
 }
