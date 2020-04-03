@@ -66,7 +66,7 @@ Annotated .css file included for position, sizing, and coloring. Default is whit
 			lat: "40.111111",           // your latitude
 			lon: "-74.111111",          // your longitude
 			mode: "static",             // static or rotating
-                        timeFormat: "  h:mm a",     // use standard time formatting (" HH:mm" for 24 hour)
+                    timeFormat: "  h:mm a",     // use standard time formatting (" HH:mm" for 24 hour)
 			LowText: "Low",             // Low tide text. Whatever you want or nothing "",
 			HighText: "High",           // High tide text. Whatever you want or nothing "",
 			height: "ft",               // ft = feet, m = meters (When mode: is rotating)
