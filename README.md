@@ -53,6 +53,8 @@ Annotated .css file included for position, sizing, and coloring. Default is whit
 
 * Free and immediate apiKey @ https://www.worldtides.info/developer
 
+### EDIT 4/11/20 Worldtides is no longer offering free api keys
+
 * No dependencies! No kidding!
 
 ## Config.js entry and options
